@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 2px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #38b6cd;
+    color: white;
+    padding: 12px ;
+    margin: auto;
+    border: none;
+    width: 30%;
+    /*max-width: 500px;*/
+}
+
+
+.container {
+    padding: 16px;
+ 	max-width: 500px;
+ 	margin: auto;
+}
+
+
+</style>
+
+<form  action="" method="post">
+	{% csrf_token %}
+  <div class="container">
+    <label ><b>Username</b></label>
+    <input type="text" id="id_username" name="username" placeholder="Enter Username" required="required">
+
+    <label ><b>Password</b></label>
+    <input type="password" id="id_password" placeholder="Enter Password" name="password" required="required">
+    <font color="#ff0000">{{ form.errors }}</font>
+        
+    <button type="submit" >Login</button>
+    
+  </div>
+</form>
+
+
+{% endblock %}

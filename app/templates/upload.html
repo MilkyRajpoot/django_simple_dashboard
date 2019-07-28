@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="{% url 'home' %}">Home</a>
+
+  <a href="{% url 'model_form_upload' %}">Upload Document</a>
+  <a href="{% url 'profile' %}">Create Profile</a>
+  <a href="{% url 'listProfile' %}">Profile View</a>
+  <a href="{% url 'listDocument' %}">Document Views</a>
+  <a href="{% url 'change_password' %}">Change Password</a>
+  <a href="{% url 'logout' %}">Logout</a>
+  
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+<hr>
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+     
+</body>
+</html> 
+
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 25px;
+    width: 750px;
+}
+</style>
+</head>
+<body>
+
+
+<div class="container">
+<h3>Upload Document</h3>
+<hr>
+<!-- <br> -->
+  <form  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+  	<label for="form.user">User</label>
+    <select id={{form.user}}
+    <label for="description">Description</label>
+    <input type="text" id="id_description" name="description" placeholder="Your Description..">
+    
+    <label for="upload">Upload PDF</label>
+    <input type="file" name="document" id="id_document">
+    
+<font color="#ff0000">{{ form.errors }}</font>
+<br>
+    <input type="submit">
+    <hr>
+  <p style="text-align:right;"><a href="{% url 'home' %}">Return to home</a></p>
+  </form>
+</div>
+{% endblock %}
